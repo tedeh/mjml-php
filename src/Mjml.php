@@ -176,7 +176,7 @@ class Mjml
         return [
             (new ExecutableFinder)->find('node', 'node', $extraDirectories),
             'mjml.mjs',
-            base64_encode(json_encode(array_values($arguments))),
+            base64_encode(json_encode($arguments[1])),
         ];
     }
 
@@ -212,6 +212,8 @@ class Mjml
             $this->getCommand($arguments),
             $this->workingDirectory,
         );
+
+        $process->setInput($arguments[0]);
 
         $process->run();
 
